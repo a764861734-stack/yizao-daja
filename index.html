@@ -8,7 +8,7 @@
 :root{--bg:#0c0f1c;--card:#141a2e;--card2:#1c2340;--line:#283050;--txt:#e3e8f5;--sub:#8894b8;--accent:#5c8cff;--accent2:#3dd6a0;--warn:#f0a050;--bad:#f06070;--good:#3dd6a0;--orange:#ff8c52;--done-bg:rgba(61,214,160,.12);--done-border:rgba(61,214,160,.35);}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;background:linear-gradient(160deg,#0a0d1a,#10162a);color:var(--txt);min-height:100vh;}
-.wrap{max-width:1000px;margin:0 auto;padding:18px;}
+.wrap{max-width:1280px;margin:0 auto;padding:18px;}
 
 /* header */
 header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
@@ -26,6 +26,36 @@ h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shad
 .summary .chip b{color:var(--txt);}
 .summary .chip.good{border-color:var(--good);color:var(--good);}
 .summary .chip.ora{border-color:var(--orange);color:var(--orange);}
+
+/* countdown */
+.countdown{background:linear-gradient(135deg,#1a2342,#141a2e);border:1px solid var(--orange);border-radius:14px;padding:16px;margin-bottom:12px;text-align:center;}
+.countdown .cd-title{font-size:13px;color:var(--sub);margin-bottom:10px;}
+.countdown .cd-title b{color:var(--orange);}
+.countdown .cd-boxes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.countdown .cd-box{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:64px;}
+.countdown .cd-box .n{font-size:26px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums;}
+.countdown .cd-box .u{font-size:11px;color:var(--sub);margin-top:2px;}
+.countdown .cd-sub{font-size:11px;color:var(--sub);margin-top:10px;}
+.countdown .cd-done{font-size:20px;font-weight:700;color:var(--good);}
+
+/* subject overview */
+.subj-overview{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:760px){.subj-overview{grid-template-columns:1fr}}
+.subj-card{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;}
+.subj-card h3{margin:0 0 6px;font-size:14px;color:var(--txt);display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.subj-card h3 .t{font-size:11px;color:var(--sub);font-weight:400;}
+.subj-card .big{font-size:30px;font-weight:700;line-height:1.1;}
+.subj-card .big.g{color:var(--good)} .subj-card .big.o{color:var(--orange)}
+.subj-card .line{font-size:12px;color:var(--sub);margin:6px 0 8px;}
+.subj-card .line b{color:var(--txt);}
+.pwarn{font-size:10px;padding:2px 7px;border-radius:10px;margin-left:6px;font-weight:600;white-space:nowrap;}
+.pwarn.done{background:rgba(61,214,160,.15);color:var(--good);border:1px solid var(--done-border);}
+.pwarn.over{background:rgba(240,96,112,.15);color:var(--bad);border:1px solid rgba(240,96,112,.4);}
+.pwarn.due{background:rgba(240,160,80,.15);color:var(--warn);border:1px solid rgba(240,160,80,.4);}
+.pwarn.up{background:var(--card2);color:var(--sub);border:1px solid var(--line);}
+.pwarn.pace{display:none;}
+.trend-warn{font-size:12px;margin-top:8px;color:var(--sub);}
+.trend-warn b{color:var(--warn);}
 
 /* card */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;}
@@ -87,6 +117,14 @@ h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shad
 .stat .v.g{color:var(--good)} .stat .v.w{color:var(--warn)} .stat .v.c{color:var(--orange)}
 .stat .k{font-size:11px;color:var(--sub);margin-top:4px;}
 
+.lianxi-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0;border-bottom:1px dashed var(--line);font-size:12px;}
+.lianxi-row:last-child{border-bottom:none}
+.lianxi-row b{width:42px;color:var(--txt);font-size:13px;}
+.lianxi-row span{color:var(--sub);}
+.lianxi-row .btn{padding:2px 8px;font-size:13px;}
+.lianxi-rate{font-weight:700;color:var(--accent);}
+.lianxi-tot{margin-left:auto;white-space:nowrap;}
+
 .bar-row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12px;}
 .bar-row .name{width:100px;color:var(--sub);flex-shrink:0;}
 .bar{flex:1;height:7px;background:var(--card2);border-radius:5px;overflow:hidden;}
@@ -94,12 +132,55 @@ h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shad
 .bar i.o{background:var(--orange);}
 .bar-row .pct{width:38px;text-align:right;color:var(--sub);font-variant-numeric:tabular-nums;}
 
+/* weekly report */
+.wk-report{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.85;color:var(--sub);}
+.wk-report .wk-h{color:var(--txt);font-weight:600;margin-bottom:6px;font-size:13px;}
+.wk-report b{color:var(--txt);}
+.wk-report .wk-tip{margin-top:8px;color:var(--warn);}
+.wk-report ul{margin:6px 0;padding-left:18px;}
+
+/* exam score tracking */
+.exam-note{font-size:11px;color:var(--sub);margin-bottom:8px;line-height:1.6;}
+.exam-form{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px;}
+.exam-form .fld{display:flex;flex-direction:column;gap:4px;}
+.exam-form .fld label{font-size:11px;color:var(--sub);}
+.exam-form select,.exam-form input{background:var(--card2);border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:7px 9px;font-size:13px;min-width:74px;}
+.exam-form .score-in{width:62px;}
+.exam-chips{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 10px;}
+.exam-chips .chip{background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:5px 12px;font-size:12px;color:var(--sub);}
+.exam-chips .chip b{color:var(--txt);}
+.exam-list{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.exam-row{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;flex-wrap:wrap;}
+.exam-row .bt{font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;}
+.exam-row .bt.z{background:rgba(255,140,82,.16);color:var(--orange);border:1px solid rgba(255,140,82,.4);}
+.exam-row .bt.l{background:rgba(92,140,255,.16);color:var(--accent);border:1px solid rgba(92,140,255,.4);}
+.exam-row .src{color:var(--sub);}
+.exam-row .sc{font-weight:700;font-size:14px;}
+.exam-row .sc.g{color:var(--good)} .exam-row .sc.w{color:var(--warn)} .exam-row .sc.b{color:var(--bad)}
+.exam-row .del{margin-left:auto;color:var(--sub);cursor:pointer;font-size:16px;border:none;background:none;padding:0 4px;}
+.exam-row .del:hover{color:var(--bad);}
+
 /* history */
 .hist{display:flex;gap:4px;flex-wrap:wrap;}
 .hcell{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;background:var(--card2);border:1px solid var(--line);cursor:pointer;color:var(--sub);}
 .hcell.full{background:rgba(61,214,160,.2);border-color:var(--good);color:var(--good);}
 .hcell.part{background:rgba(255,140,82,.12);border-color:rgba(255,140,82,.35);color:var(--orange);}
+.hcell.zq{background:rgba(92,140,255,.2);border-color:var(--accent);color:var(--accent);}
 .hcell.sel{outline:2px solid var(--accent);}
+/* 修复：今天在月历中高亮（之前 .today-mark 没有对应样式） */
+.hcell.today-mark{border-color:var(--accent);box-shadow:0 0 8px rgba(92,140,255,.45);color:var(--accent);font-weight:700;}
+
+/* 历年真题清单 */
+.year-sec{background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+.year-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.year-head:hover{background:rgba(92,140,255,.06);}
+.year-head .ychev{color:var(--sub);font-size:12px;width:14px;transition:.15s;flex-shrink:0;}
+.year-head.open .ychev{transform:rotate(90deg);}
+.year-head .yname{font-size:14px;font-weight:600;color:var(--txt);flex-shrink:0;}
+.year-head .ymeta{font-size:12px;color:var(--sub);margin-left:auto;}
+.year-head .ymeta b{color:var(--txt);}
+.year-body{padding:4px 14px 14px;border-top:1px dashed var(--line);}
+.zq-sub{font-size:10px;color:var(--sub);margin:8px 0 3px;}
 
 /* textarea */
 textarea{width:100%;background:var(--card2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:10px;font-size:13px;resize:vertical;min-height:60px;font-family:inherit;}
@@ -114,8 +195,12 @@ textarea:focus{outline:none;border-color:var(--accent)}
 .toast.show{opacity:1;}
 
 /* grid layout */
-.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:760px){.main-grid{grid-template-columns:1fr}}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+.main-grid .card,.sprint-top .card{margin-bottom:0;}
+.sprint-top{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+.sprint-right{display:flex;flex-direction:column;gap:12px;}
+@media(max-width:1100px){.sprint-top{grid-template-columns:1fr}}
+@media(max-width:900px){.main-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -132,6 +217,17 @@ textarea:focus{outline:none;border-color:var(--accent)}
 
 <div class="summary" id="summary"></div>
 
+<!-- 倒计时 -->
+<div class="countdown" id="countdown"></div>
+
+<!-- 顶部模块切换 -->
+<div class="tabs" id="topTabs">
+  <button class="tab active" id="tabCourseBtn">📚 上课打卡</button>
+  <button class="tab" id="tabSprintBtn">📝 真题冲刺</button>
+</div>
+
+<div id="tabCourse">
+
 <!-- 全天节奏 + 统计 -->
 <div class="main-grid">
   <div class="card">
@@ -143,7 +239,7 @@ textarea:focus{outline:none;border-color:var(--accent)}
     <div class="stats">
       <div class="stat"><div class="v c" id="stStreak">0</div><div class="k">上课连续天数</div></div>
       <div class="stat"><div class="v" id="stDays">0</div><div class="k">累计打卡天数</div></div>
-      <div class="stat"><div class="v g" id="stRate">0%</div><div class="k">今日完成率</div></div>
+      <div class="stat"><div class="v g" id="stRate">0%</div><div class="k">作息完成率</div></div>
     </div>
     <div id="rateBars" style="margin-top:12px;"></div>
   </div>
@@ -165,6 +261,106 @@ textarea:focus{outline:none;border-color:var(--accent)}
 <div class="tabs" id="tabs"></div>
 <div id="content"></div>
 
+<!-- 科目进度总览 -->
+<div class="card">
+  <h2>📚 科目进度总览 <span class="tag">已学 / 共 / 还差</span></h2>
+  <div class="subj-overview" id="subjOverview"></div>
+</div>
+
+<!-- 学习趋势 -->
+<div class="card">
+  <h2>📈 学习趋势 <span class="tag">累计完成率 / 新学节数</span></h2>
+  <div class="tabs" style="margin-bottom:10px;">
+    <div class="tab active" id="trendWeek">按周</div>
+    <div class="tab" id="trendMonth">按月</div>
+  </div>
+  <div style="font-size:11px;color:var(--sub);margin-bottom:4px;">累计完成率（实线=已学 · 虚线=按当前节奏预测 · 红线=考试日 10/18 · 蓝线=课程截止 9/30）</div>
+  <div id="trendLine"></div>
+  <div id="trendProj" style="font-size:12px;color:var(--warn);margin:6px 0 2px;"></div>
+  <div style="font-size:11px;color:var(--sub);margin:10px 0 4px;">新学节数（你的实际打卡，<span id="barUnit">按周</span>）</div>
+  <div id="trendBar"></div>
+</div>
+
+<!-- 每周复盘 -->
+<div class="card">
+  <h2>🗒️ 每周复盘 <span class="tag">本周自动生成</span></h2>
+  <div id="weekly"></div>
+</div>
+
+</div><!-- /tabCourse -->
+
+<div id="tabSprint" style="display:none">
+
+  <!-- 冲刺作息（左列） + 真题今日统计/月历（右列堆叠） -->
+  <div class="sprint-top">
+    <div class="card">
+      <h2>🏃 冲刺作息打卡 <span class="tag ora">10月真题冲刺</span></h2>
+      <div class="exam-note">上完课后切到这个模块：上午背计量、中午做计量题、下午背案例、晚上做案例题，口诀/健身/错题照常。点「计量题 / 案例题」会自动把下方成绩表单的科目填好。</div>
+      <div id="routineSprint"></div>
+    </div>
+
+    <div class="sprint-right">
+      <div class="card">
+        <h2>📊 真题今日统计</h2>
+        <div class="stats">
+          <div class="stat"><div class="v c" id="zTodayTotal">0</div><div class="k">今日真题</div></div>
+          <div class="stat"><div class="v g" id="zTodayJ">0</div><div class="k">计量</div></div>
+          <div class="stat"><div class="v" id="zTodayA">0</div><div class="k">案例</div></div>
+          <div class="stat"><div class="v w" id="zTodayLJ">0</div><div class="k">练习(计量)</div></div>
+          <div class="stat"><div class="v w" id="zTodayLA">0</div><div class="k">练习(案例)</div></div>
+          <div class="stat"><div class="v" id="zStreak">0</div><div class="k">真题连续天</div></div>
+        </div>
+        <div id="zRateBars" style="margin-top:12px;"></div>
+      </div>
+
+      <div class="card">
+        <h2>🗓️ 真题打卡月历</h2>
+        <div class="hist" id="zHistory"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 历年真题清单（独占一行） -->
+  <div class="card">
+    <h2>📚 历年真题清单 <span class="tag">点年份展开，勾做过的题</span></h2>
+    <div class="exam-note">每套真题含：<b>计量</b> 80 题（单选 1–60 + 多选 61–80，满分100）· <b>案例</b> 5 道大题（满分120）。勾选 = 今天做了这题，自动记到今日；再点取消。做的零散就勾零散的，做完一整套可用「整套标记」。</div>
+    <div id="zYears"></div>
+  </div>
+
+  <!-- 练习题 + 真题成绩追踪 -->
+  <div class="main-grid">
+    <div class="card">
+      <h2>📝 练习题正确率统计 <span class="tag">按科目 · 做题+对题</span></h2>
+      <div class="exam-note">每天做的练习题按科目记：做了几道、对了几道，自动算正确率和趋势。零散练习也在这里记。</div>
+      <div id="lianxiBox"></div>
+      <div style="font-size:11px;color:var(--sub);margin:10px 0 4px;">练习正确率趋势（红虚线 = 60%，虚线为趋势线）</div>
+      <div id="lianxiTrend"></div>
+    </div>
+
+    <div class="card">
+    <h2>📊 真题成绩追踪 <span class="tag ora">看分数提升</span></h2>
+    <div class="exam-note">真题年份参考：2010–2025（共 16 年，含 2022 补考）。及格线均为卷面 <b style="color:var(--txt)">60%</b>（计量满分100→60分；案例满分120→72分）。</div>
+    <div class="exam-form">
+      <input type="hidden" id="examType" value="真题">
+      <div class="fld"><label>科目</label><select id="examSubj"><option value="计量">计量</option><option value="案例">案例</option></select></div>
+      <div class="fld"><label>来源（选年份）</label><input id="examSrc" list="examSrcList" placeholder="如 2024年" style="min-width:150px;"></div>
+      <datalist id="examSrcList">
+        <option value="2025年"></option><option value="2024年"></option><option value="2023年"></option><option value="2022补考"></option><option value="2022年"></option><option value="2021年"></option><option value="2020年"></option><option value="2019年"></option><option value="2018年"></option><option value="2017年"></option><option value="2016年"></option><option value="2015年"></option><option value="2014年"></option><option value="2013年"></option><option value="2012年"></option><option value="2011年"></option><option value="2010年"></option>
+      </datalist>
+      <div class="fld"><label>得分</label><input id="examScore" class="score-in" type="number" min="0" placeholder="80"></div>
+      <div class="fld"><label>满分</label><input id="examFull" class="score-in" type="number" min="1" value="100" placeholder="100"></div>
+      <div class="fld"><label>错题数</label><input id="examWrong" class="score-in" type="number" min="0" value="0" placeholder="0"></div>
+      <button class="btn primary" id="examAdd" style="margin-bottom:0;">＋ 添加</button>
+    </div>
+    <div class="exam-chips" id="examChips"></div>
+    <div class="exam-list" id="examList"></div>
+    <div id="scoreTrend"></div>
+    <div id="examMsg"></div>
+  </div>
+  </div><!-- /main-grid -->
+
+</div><!-- /tabSprint -->
+
 <!-- 备注 -->
 <div class="card">
   <h2>📝 今日备注 <span class="tag">工作 / 突发 / 心得</span></h2>
@@ -176,6 +372,7 @@ textarea:focus{outline:none;border-color:var(--accent)}
   <h2>💡 使用说明</h2>
   <div style="font-size:12px;color:var(--sub);line-height:1.8;">
     • 数据保存在<strong style="color:var(--txt);">本浏览器本地</strong>，关掉网页不丢，换设备/清缓存需先导出。<br>
+    • <strong style="color:var(--orange);">iPhone 提醒</strong>：主屏图标（Add to Home Screen）是一个<strong style="color:var(--txt);">独立存储</strong>，和 Safari 里打开的同一网址<strong style="color:var(--txt);">互不相通</strong>。记录没丢，只是在各自的空间里。建议<strong style="color:var(--txt);">只用一个入口</strong>（推荐主屏图标），并定期点「导出备份」存到文件 App / 云盘。<br>
     • <strong>全天节奏</strong>：点左侧方块打卡，睡前/运动/背诵等一键标记。<br>
     • <strong>课程打卡</strong>：每节课一个独立方格，绿色=已上，蓝色描边=今天打的。计量和案例分开标签页。<br>
     • 用顶部 <code style="background:var(--card2);padding:1px 6px;border-radius:5px;">‹ ›</code> 补打卡过去日期，点历史格子也能跳。<br>
@@ -207,6 +404,21 @@ const ROUTINE_SLOTS = [
   {id:'bed',              time:'22:30',       label:'就寝',          cat:'休息'},
 ];
 
+/* 冲刺阶段作息（上完课后用，B 版：健身 18:00–19:30，案例题 19:30–21:30） */
+const SPRINT_SLOTS = [
+  {id:'sp_koujue',       time:'06:30–07:00', label:'年轮背诵口诀',  cat:'背诵'},
+  {id:'sp_rope_am',      time:'07:00–07:30', label:'晨练跳绳',      cat:'运动'},
+  {id:'sp_nl_jiliang',   time:'08:30起',     label:'年轮计量',      cat:'背诵', note:'上午背计量'},
+  {id:'sp_jiliang_ti',   time:'12:00–13:30', label:'计量题',        cat:'真题', note:'中午做计量真题/练习', examSubj:'计量'},
+  {id:'sp_nap',          time:'13:30–14:45', label:'午休',          cat:'休息'},
+  {id:'sp_nl_anli',      time:'14:45起',     label:'年轮案例',      cat:'背诵', note:'下午背案例'},
+  {id:'sp_anli_cuoti',   time:'17:00–18:00', label:'案例错题',      cat:'复习', note:'整理/重做错题'},
+  {id:'sp_fit',          time:'18:00–19:30', label:'健身',          cat:'运动'},
+  {id:'sp_anli_ti',      time:'19:30–21:30', label:'案例题',        cat:'真题', note:'晚上做案例真题/练习', examSubj:'案例'},
+  {id:'sp_shower',       time:'21:30',       label:'洗澡',          cat:'休息'},
+  {id:'sp_bed',          time:'22:30',       label:'就寝',          cat:'休息'},
+];
+
 /* ====== 课程结构定义 ====== */
 const COURSES = {
   jiliang: {
@@ -233,6 +445,11 @@ const COURSES = {
   }
 };
 
+/* ====== 真题年份 & 题量定义 ====== */
+/* 一级造价工程师：计量 = 客观题 80 道（单选 1–60 + 多选 61–80，满分100）；案例 = 5 道大题（满分120） */
+const ZHENTI_YEARS = ['2010年','2011年','2012年','2013年','2014年','2015年','2016年','2017年','2018年','2019年','2020年','2021年','2022年','2022补考','2023年','2024年','2025年'];
+const ZHENTI_PER_YEAR = 85; // 计量80 + 案例5
+
 /* ====== 存储 ====== */
 const KEY='ycj_full_v1';
 function loadAll(){ try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}} }
@@ -241,10 +458,43 @@ let all = loadAll();
 let cur = todayStr();
 let tab = 'jiliang';
 
+/* ====== 考试倒计时配置 ====== */
+/* 2026 一造考试：10/17 管理·计价，10/18 计量·案例。你已免考管理/计价，考试日为 10/18 */
+const EXAM_DATE = '2026-10-18T09:00:00';
+const EXAM_LABEL = '计量 · 案例';
+/* 课程上完 + 复习差不多的截止日：10月整月留做真题，所以 9/30 前必须结课 */
+const COURSE_DEADLINE = '2026-09-30T00:00:00';
+const COURSE_LABEL = '9/30 课程截止';
+
 function todayStr(){ const d=new Date(); return fmt(d); }
 function fmt(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function shiftDay(n){ const d=new Date(cur+'T00:00:00'); d.setDate(d.getDate()+n); cur=fmt(d); render(); }
+function shiftDay(n){ const d=new Date(cur+'T00:00:00'); d.setDate(d.getDate()+n); cur=fmt(d); calYear=d.getFullYear(); calMonth=d.getMonth(); render(); }
 function prettyDate(s){ const d=new Date(s+'T00:00:00'); const w=['日','一','二','三','四','五','六'][d.getDay()]; return `${s} 周${w}`; }
+
+/* ====== 考试倒计时 ====== */
+function renderCountdown(){
+  const box=document.getElementById('countdown');
+  const target=new Date(EXAM_DATE);
+  const now=new Date();
+  let diff=Math.floor((target-now)/1000);
+  if(diff<=0){
+    box.innerHTML=`<div class="cd-title">🎯 一造考试日 <b>${EXAM_LABEL}</b></div><div class="cd-done">考试已开始 / 已结束，加油！🎉</div>`;
+    return;
+  }
+  const d=Math.floor(diff/86400); diff%=86400;
+  const h=Math.floor(diff/3600); diff%=3600;
+  const m=Math.floor(diff/60);
+  const s=diff%60;
+  const p=n=>String(n).padStart(2,'0');
+  box.innerHTML=`<div class="cd-title">🎯 距一造考试（<b>${EXAM_LABEL}</b>）还有</div>
+    <div class="cd-boxes">
+      <div class="cd-box"><div class="n">${d}</div><div class="u">天</div></div>
+      <div class="cd-box"><div class="n">${p(h)}</div><div class="u">时</div></div>
+      <div class="cd-box"><div class="n">${p(m)}</div><div class="u">分</div></div>
+      <div class="cd-box"><div class="n">${p(s)}</div><div class="u">秒</div></div>
+    </div>
+    <div class="cd-sub">考试日期 2026-10-18（管理·计价 10/17，你只需考计量·案例）</div>`;
+}
 
 function getDay(date){
   if(!all[date]) all[date]={};
@@ -252,6 +502,10 @@ function getDay(date){
   if(!d.slots) d.slots={};
   if(!d.lessons) d.lessons={};
   if(d.note===undefined) d.note='';
+  if(!d.exams) d.exams=[];
+  if(!d.zhenti) d.zhenti=[];
+  if(d.lianxi===undefined) d.lianxi={计量:{total:0,right:0},案例:{total:0,right:0}};
+  else if(typeof d.lianxi==='number'){ const n=d.lianxi; d.lianxi={计量:{total:n,right:0},案例:{total:0,right:0}}; }
   return d;
 }
 
@@ -294,17 +548,206 @@ function hasAnyData(date){
 /* ====== 渲染 ====== */
 function render(){
   getDay(cur);
-  // 日历时跟随 cur 切换月份
-  const d=new Date(cur+'T00:00:00');
-  calYear=d.getFullYear(); calMonth=d.getMonth();
   document.getElementById('dateLabel').textContent=prettyDate(cur)+(cur===todayStr()?' · 今天':'');
   renderSummary();
   renderRoutine();
+  renderRoutineSprint();
   renderStats();
+  renderSubjectOverview();
+  renderTrend();
+  renderWeekly();
+  renderExams();
+  renderZhentiStats();
+  renderZhentiHistory();
+  renderZhentiYears();
+  renderLianxi();
   renderHistory();
   renderTabs();
   renderContent();
   document.getElementById('note').value=(all[cur]&&all[cur].note)||'';
+}
+
+function renderSubjectOverview(){
+  const box=document.getElementById('subjOverview'); box.innerHTML='';
+  for(const [sk,sv] of Object.entries(COURSES)){
+    let totalAll=0, totalDone=0;
+    for(let ci=0;ci<sv.chapters.length;ci++){
+      const ch=sv.chapters[ci];
+      totalAll+=ch.total;
+      totalDone+=doneCount(sk,ci,cur);
+    }
+    const pct=Math.round(totalDone/totalAll*100);
+    const left=totalAll-totalDone;
+    let warnCnt=0;
+    for(let ci=0;ci<sv.chapters.length;ci++){ const st=planWarn(sk,ci).cls; if(st==='over'||st==='due') warnCnt++; }
+    const sec=document.createElement('div'); sec.className='subj-card';
+    sec.innerHTML=`
+      <h3>${sv.name}<span class="t">${sv.teacher}</span></h3>
+      <div class="big ${pct===100?'g':'o'}">${pct}%</div>
+      <div class="line">已学 <b>${totalDone}</b> / 共 <b>${totalAll}</b> 节 · 还差 <b>${left}</b> 节</div>
+      <div class="prog-bar"><i class="${pct===100?'g':'o'}" style="width:${pct}%"></i></div>
+      <div class="trend-warn">${warnCnt? `⚠ <b>${warnCnt}</b> 章本月/已超期未完成` : '✅ 计划有序推进'}</div>`;
+    box.appendChild(sec);
+  }
+}
+
+/* ====== 计划完成度预警 + 学习趋势 ====== */
+function planWarn(subj,chIdx){
+  const ch=COURSES[subj].chapters[chIdx];
+  const dCnt=doneCount(subj,chIdx,cur);
+  if(dCnt>=ch.total) return {cls:'done',txt:'✅ 已完成'};
+  const months=[...ch.plan.matchAll(/(\d+)月/g)].map(m=>parseInt(m[1]));
+  if(months.length===0) return {cls:'pace',txt:''};
+  const deadline=Math.max(...months);
+  const cm=new Date().getMonth()+1;
+  if(deadline<cm) return {cls:'over',txt:'🔴 已超期('+deadline+'月)'};
+  if(deadline===cm) return {cls:'due',txt:'🟠 本月应完成 · 还差'+(ch.total-dCnt)+'节'};
+  return {cls:'up',txt:'🔵 计划'+deadline+'月完成'};
+}
+
+function totalCumulativeDone(date){
+  let n=0;
+  for(const [sk,sv] of Object.entries(COURSES)){
+    for(let ci=0;ci<sv.chapters.length;ci++) n+=doneCount(sk,ci,date);
+  }
+  return n;
+}
+function countLessonsOnDate(d){
+  const day=all[d]; if(!day||!day.lessons) return 0;
+  return Object.keys(day.lessons).length;
+}
+
+function buildTrend(mode){
+  const dates=Object.keys(all).filter(d=>hasAnyData(d)).sort();
+  if(dates.length===0) return [];
+  const start=dates[0], end=todayStr();
+  const buckets=[];
+  if(mode==='week'){
+    let ws=new Date(start+'T00:00:00');
+    ws.setDate(ws.getDate()-ws.getDay());
+    let prevWe=null;
+    while(fmt(ws)<=end){
+      const we=new Date(ws); we.setDate(we.getDate()+6);
+      const weS=fmt(we); const ce= weS<=end?weS:end;
+      const cum=totalCumulativeDone(ce);
+      let news=0; for(const d of dates){ if(d>(prevWe||'0000') && d<=ce) news+=countLessonsOnDate(d); }
+      buckets.push({label:(ws.getMonth()+1)+'/'+ws.getDate(),cum,news});
+      prevWe=ce; ws.setDate(ws.getDate()+7);
+    }
+  }else{
+    const sD=new Date(start+'T00:00:00'); let y=sD.getFullYear(), m=sD.getMonth();
+    const eD=new Date(end+'T00:00:00'); let prevMe=null;
+    while(y<eD.getFullYear()||(y===eD.getFullYear()&&m<=eD.getMonth())){
+      const me=new Date(y,m+1,0); const meS=fmt(me); const ce= meS<=end?meS:end;
+      const cum=totalCumulativeDone(ce);
+      let news=0; for(const d of dates){ if(d>(prevMe||'0000') && d<=ce) news+=countLessonsOnDate(d); }
+      buckets.push({label:(m+1)+'月',cum,news});
+      prevMe=ce; m++; if(m>11){m=0;y++;}
+    }
+  }
+  return buckets;
+}
+
+function dayDiff(a,b){ return Math.round((b-a)/86400000); }
+
+/* 每日累计完成数（含历史基线），用于回归与预测 */
+function dailyCumSeries(){
+  const dates=Object.keys(all).filter(d=>hasAnyData(d)).sort();
+  if(!dates.length) return [];
+  const sD=new Date(dates[0]+'T00:00:00'); const eD=new Date(todayStr()+'T00:00:00');
+  const out=[]; const t=new Date(sD);
+  while(t<=eD){ const ds=fmt(t); out.push({date:ds, cum:totalCumulativeDone(ds)}); t.setDate(t.getDate()+1); }
+  return out;
+}
+
+/* 最小二乘线性回归 y=a+b x */
+function linreg(pts){
+  const n=pts.length; if(n<2) return null;
+  let sx=0,sy=0,sxx=0,sxy=0;
+  pts.forEach(p=>{ sx+=p.x; sy+=p.y; sxx+=p.x*p.x; sxy+=p.x*p.y; });
+  const d=n*sxx-sx*sx; if(d===0) return null;
+  const b=(n*sxy-sx*sy)/d, a=(sy-b*sx)/n;
+  return {a,b};
+}
+
+/* 累计完成率折线 + 预测虚线（到考试日） */
+function trendLineSVG(actual, forecast, info){
+  const W=680,H=170,pl=38,pr=14,pt=14,pb=30;
+  const pw=W-pl-pr, ph=H-pt-pb;
+  if(actual.length===0) return '<div style="color:#8894b8;font-size:12px;padding:8px 0;">暂无数据</div>';
+  const maxX=Math.max(actual.length-1, info.examIdx||0);
+  const X=i=> pl+pw*(i/maxX);
+  const Y=p=> pt+ph*(1-p/100);
+  let g='';
+  [0,25,50,75,100].forEach(v=>{ g+=`<line x1="${pl}" y1="${Y(v).toFixed(1)}" x2="${W-pr}" y2="${Y(v).toFixed(1)}" stroke="#283050" stroke-width="1"/><text x="${pl-6}" y="${(Y(v)+4).toFixed(1)}" fill="#8894b8" font-size="9" text-anchor="end">${v}</text>`; });
+  let ap='';
+  actual.forEach((o,i)=>{ const x=X(i).toFixed(1),y=Y(o.cum/info.total*100).toFixed(1); ap+=(i===0?'M':'L')+x+' '+y+' '; });
+  let pts='';
+  actual.forEach((o,i)=>{ if(i===actual.length-1) pts+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(o.cum/info.total*100).toFixed(1)}" r="3" fill="#ff8c52"/>`; });
+  let fp='';
+  if(forecast.length){ forecast.forEach((o,i)=>{ const x=X(o.x).toFixed(1),y=Y(o.y).toFixed(1); fp+=(i===0?'M':'L')+x+' '+y+' '; }); }
+  let cv='';
+  if(info.courseIdx!=null && info.courseIdx<=maxX){ const cx2=X(info.courseIdx).toFixed(1); cv=`<line x1="${cx2}" y1="${pt}" x2="${cx2}" y2="${pt+ph}" stroke="#5c8cff" stroke-width="1" stroke-dasharray="3 3"/><text x="${cx2}" y="${pt-3}" fill="#5c8cff" font-size="9" text-anchor="middle">${info.courseLabel}</text>`; }
+  let ev='';
+  if(info.examIdx!=null && info.examIdx<=maxX){ const ex=X(info.examIdx).toFixed(1); ev=`<line x1="${ex}" y1="${pt}" x2="${ex}" y2="${pt+ph}" stroke="#f06070" stroke-width="1" stroke-dasharray="3 3"/><text x="${ex}" y="${pt-3}" fill="#f06070" font-size="9" text-anchor="middle">${info.examLabel}</text>`; }
+  let xl='', lastM=-1;
+  actual.forEach((o,i)=>{ const mm=new Date(o.date+'T00:00:00').getMonth(); if(mm!==lastM){ lastM=mm; xl+=`<text x="${X(i).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${mm+1}月</text>`; } });
+  const dash=fp?`<path d="${fp}" fill="none" stroke="#ff8c52" stroke-width="2" stroke-dasharray="5 4" opacity=".85"/>`:'';
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${g}<path d="${ap}" fill="none" stroke="#ff8c52" stroke-width="2"/>${dash}${pts}${cv}${ev}${xl}</svg>`;
+}
+
+function barSVG(b){
+  const W=680,H=130,pl=34,pr=14,pt=14,pb=28;
+  const pw=W-pl-pr, ph=H-pt-pb, n=b.length;
+  if(n===0) return '<div style="color:#8894b8;font-size:12px;padding:8px 0;">暂无数据</div>';
+  const maxN=Math.max(1,...b.map(o=>o.news));
+  const gap=pw/n, bw=Math.max(5,Math.min(40,gap*0.6));
+  let s='';
+  b.forEach((o,i)=>{
+    const cx=pl+gap*i+gap/2, x=cx-bw/2, bh=ph*(o.news/maxN), y=pt+ph-bh;
+    s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="#5c8cff"/>`;
+    if(o.news>0) s+=`<text x="${cx.toFixed(1)}" y="${(y-3).toFixed(1)}" fill="#8894b8" font-size="9" text-anchor="middle">${o.news}</text>`;
+  });
+  let xl=''; const step=Math.max(1,Math.ceil(n/12));
+  b.forEach((o,i)=>{ if(i%step===0||i===n-1) xl+=`<text x="${(pl+gap*i+gap/2).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${o.label}</text>`; });
+  s+=`<text x="${pl-5}" y="${pt+4}" fill="#8894b8" font-size="9" text-anchor="end">${maxN}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${s}</svg>`;
+}
+
+let trendMode='week';
+function renderTrend(){
+  let total=0; for(const[k,v]of Object.entries(COURSES)) v.chapters.forEach(c=>total+=c.total);
+  const actual=dailyCumSeries();
+  const startD=actual.length?new Date(actual[0].date+'T00:00:00'):null;
+  const examD=new Date(EXAM_DATE);
+  const courseD=new Date(COURSE_DEADLINE);
+  const examIdx=startD?dayDiff(startD,examD):0;
+  const courseIdx=startD?dayDiff(startD,courseD):0;
+  const todayIdx=actual.length?actual.length-1:0;
+  const reg=linreg(actual.map((o,i)=>({x:i,y:o.cum/total*100})));
+  let forecast=[]; let projHtml='数据不足，暂无法预测（至少需 2 天记录）';
+  if(reg && examIdx>todayIdx){
+    for(let x=todayIdx;x<=examIdx;x++){ forecast.push({x, y:Math.max(0,Math.min(100,reg.a+reg.b*x))}); }
+    const peExam=Math.max(0,Math.min(100,reg.a+reg.b*examIdx));
+    const peCourse=Math.max(0,Math.min(100,reg.a+reg.b*courseIdx));
+    const doneNow=actual[todayIdx].cum, leftNow=total-doneNow;
+    const daysToCourse=Math.max(1,dayDiff(new Date(todayStr()+'T00:00:00'),courseD));
+    const needPerDay=leftNow/daysToCourse;
+    const projDoneCourse=Math.round(peCourse/100*total), leftCourse=total-projDoneCourse;
+    const slopeNow=reg.b/100*total;
+    let lvl,bgc,bdc,txc,icon,headline;
+    if(peCourse>=100){ lvl='ok'; bgc='rgba(46,160,67,.16)'; bdc='#3fae5a'; txc='#8ee6a3'; icon='🟢'; headline='课程窗口安全：按当前节奏到 9/30 可学完全部，10月真题冲刺无忧'; }
+    else if(needPerDay>slopeNow*1.15){ lvl='behind'; bgc='rgba(240,80,80,.16)'; bdc='#f06070'; txc='#ff9a9a'; icon='🔴'; headline='⚠ 落后预警：按当前节奏到 9/30 还差 '+leftCourse+' 节，需立即提速'; }
+    else { lvl='tight'; bgc='rgba(255,179,0,.16)'; bdc='#ffb300'; txc='#ffd76a'; icon='🟡'; headline='偏紧提醒：按当前节奏到 9/30 差 '+leftCourse+' 节，小幅提速即可赶上'; }
+    projHtml=`<div style="margin-top:8px;padding:10px 12px;border-radius:10px;background:${bgc};border:1px solid ${bdc};color:${txc};font-size:12.5px;line-height:1.65;">`
+      +`<b>${icon} ${headline}</b><br>`
+      +`到 9/30 预计完成 <b>${Math.round(peCourse)}%</b>（${projDoneCourse}/${total} 节） · 还差 <b>${leftCourse}</b> 节<br>`
+      +`需提到 <b>${needPerDay.toFixed(1)}</b> 节/天（现约 ${slopeNow.toFixed(1)} 节/天） · 到 10/18 预计 ${Math.round(peExam)}%`
+      +`</div>`;
+  }
+  document.getElementById('trendLine').innerHTML=trendLineSVG(actual,forecast,{total,examIdx,examLabel:'10/18',courseIdx,courseLabel:'9/30',todayIdx});
+  document.getElementById('trendProj').innerHTML=projHtml;
+  document.getElementById('trendBar').innerHTML=barSVG(buildTrend(trendMode));
 }
 
 function renderSummary(){
@@ -319,10 +762,12 @@ function renderSummary(){
   }
   const todayLessonCnt=countTodayLessons();
   const todayRoutineCnt=countTodayRoutine();
+  const zc=todayZhentiCount();
   box.innerHTML=`
     <div class="chip">📅 <b>${prettyDate(cur)}</b></div>
     <div class="chip ora">📚 今日课程打卡 <b>${todayLessonCnt}</b> 节</div>
     <div class="chip good">✅ 今日作息打卡 <b>${todayRoutineCnt}/${ROUTINE_SLOTS.length}</b></div>
+    <div class="chip" style="border-color:var(--accent);color:var(--accent);">📝 今日真题 <b>${zc.total}</b> 题 · 练习 计量<b>${todayLianxiCount().计量.total}</b>/案例<b>${todayLianxiCount().案例.total}</b></div>
     <div class="chip">总课程进度 <b>${totalDone}/${totalAll}</b>（${Math.round(totalDone/totalAll*100)}%）</div>
   `;
 }
@@ -342,7 +787,7 @@ function renderRoutine(){
   ROUTINE_SLOTS.forEach(s=>{
     const on=!!day.slots[s.id];
     const div=document.createElement('div'); div.className='slot';
-    const isClass=s.cat==='听课';
+    const isClass=s.cat==='上课'; /* 修复：原值为 '听课'，但数据里没有该分类，导致上课项永远不变橙色 */
     div.innerHTML=`
       <div class="time">${s.time}</div>
       <div class="label">${s.label}<span class="pill cat">${s.cat}</span>
@@ -353,7 +798,23 @@ function renderRoutine(){
   });
 }
 
-/* 统计 */
+/* 冲刺作息 */
+function renderRoutineSprint(){
+  const box=document.getElementById('routineSprint'); if(!box) return; box.innerHTML='';
+  const day=getDay(cur);
+  SPRINT_SLOTS.forEach(s=>{
+    const on=!!day.slots[s.id];
+    const div=document.createElement('div'); div.className='slot';
+    const isClass=s.cat==='上课'||s.cat==='真题';
+    div.innerHTML=`
+      <div class="time">${s.time}</div>
+      <div class="label">${s.label}<span class="pill cat">${s.cat}</span>
+        ${s.note?`<small>${s.note}</small>`:''}
+      </div>
+      <div class="chk ${on?'on'+(isClass?' ora':'') :''}" data-routine="${s.id}"${s.examSubj?` data-examsubj="${s.examSubj}"`:''}>${on?'✓':''}</div>`;
+    box.appendChild(div);
+  });
+}
 function renderStats(){
   const day=getDay(cur);
   const total=ROUTINE_SLOTS.length;
@@ -364,7 +825,9 @@ function renderStats(){
   const dates=Object.keys(all).filter(d=>hasAnyData(d)).sort();
   document.getElementById('stDays').textContent=dates.length;
 
-  let streak=0; const t=new Date(todayStr()+'T00:00:00');
+  /* 修复：今天还没上课时，从昨天开始算连续天数，避免一大早清空 streak */
+  let streak=0; let t=new Date(todayStr()+'T00:00:00');
+  if(!hasCourseData(fmt(t))){ t.setDate(t.getDate()-1); }
   for(let i=0;i<400;i++){ const ds=fmt(t); if(!hasCourseData(ds)) break; streak++; t.setDate(t.getDate()-1); }
   document.getElementById('stStreak').textContent=streak;
 
@@ -439,7 +902,7 @@ function renderHistory(){
     cell.textContent=day;
     cell.title=prettyDate(ds);
     cell.style.cssText='width:auto;height:30px;';
-    cell.onclick=()=>{cur=ds;render();};
+    cell.onclick=()=>{cur=ds; calYear=d.getFullYear(); calMonth=d.getMonth(); render();};
     grid.appendChild(cell);
   }
 
@@ -492,11 +955,13 @@ function renderContent(){
     let titleHTML='';
     if(ch.type) titleHTML=`<span style="font-size:10px;background:var(--card2);color:var(--orange);padding:2px 8px;border-radius:10px;margin-left:6px;">${ch.type}</span>`;
 
+    const pw=planWarn(tab,ch.idx);
     sec.innerHTML=`
       <div class="subj-header">
         <h2>${ch.ch}${titleHTML}</h2>
-        <div class="meta">${ch.year}年课 · 共<b>${ch.total}</b>节 · ${ch.plan}</div>
+        <div class="meta">${ch.year}年课 · 共<b>${ch.total}</b>节 · ${ch.plan}${dCnt<ch.total?' · 还差 <b>'+(ch.total-dCnt)+'</b> 节':''}</div>
       </div>
+      ${pw.txt?`<div style="margin:4px 0 2px;"><span class="pwarn ${pw.cls}">${pw.txt}</span></div>`:''}
       <div class="prog-row">
         <div class="lbl">进度</div>
         <div class="prog-bar"><i class="${pct===100?'g':'o'}" style="width:${pct}%"></i></div>
@@ -588,17 +1053,474 @@ function unAutoRoutine(subj){
   }
 }
 
+/* ====== 真题练习追踪（已移除：无分数统计，无参考价值的空壳） ====== */
+
+/* ====== 每周复盘 ====== */
+function weekRange(dateStr){
+  const d=new Date(dateStr+'T00:00:00');
+  const dow=d.getDay();
+  const mon=new Date(d); mon.setDate(d.getDate()-(dow===0?6:dow-1));
+  const sun=new Date(mon); sun.setDate(mon.getDate()+6);
+  return {start:fmt(mon), end:fmt(sun)};
+}
+function computeStreak(){
+  let t=new Date(todayStr()+'T00:00:00');
+  if(!hasCourseData(fmt(t))) t.setDate(t.getDate()-1);
+  let s=0;
+  for(let i=0;i<400;i++){ const ds=fmt(t); if(!hasCourseData(ds)) break; s++; t.setDate(t.getDate()-1); }
+  return s;
+}
+function renderWeekly(){
+  const box=document.getElementById('weekly');
+  const {start,end}=weekRange(cur);
+  const dates=Object.keys(all).filter(d=>d>=start&&d<=end&&hasAnyData(d)).sort();
+  if(dates.length===0){ box.innerHTML=`<div class="wk-report"><div class="wk-h">📅 本周复盘（${start} – ${end}）</div>本周暂无打卡记录，开始打卡后这里会自动生成复盘。</div>`; return; }
+  let weekLessons=0, courseDays=0, routineSum=0;
+  dates.forEach(d=>{
+    weekLessons+=countLessonsOnDate(d);
+    if(hasCourseData(d)) courseDays++;
+    const day=all[d]; let done=0; ROUTINE_SLOTS.forEach(s=>{ if(day.slots&&day.slots[s.id]) done++; });
+    routineSum+=done/ROUTINE_SLOTS.length;
+  });
+  const routineAvg=Math.round(routineSum/dates.length*100);
+  let total=0; for(const[k,v]of Object.entries(COURSES)) v.chapters.forEach(c=>total+=c.total);
+  const cum=totalCumulativeDone(cur);
+  const pct=Math.round(cum/total*100);
+  const streak=computeStreak();
+  let behind=[];
+  for(const[sk,sv]of Object.entries(COURSES)){ for(let ci=0;ci<sv.chapters.length;ci++){ const st=planWarn(sk,ci); if(st.cls==='due'||st.cls==='over'){ const ch=sv.chapters[ci]; behind.push({name:sv.name,ch:ch.ch,left:ch.total-doneCount(sk,ci,cur)}); } } }
+  let slopeTxt='当前';
+  const act=dailyCumSeries(); const reg=linreg(act.map((o,i)=>({x:i,y:o.cum/total*100})));
+  if(reg) slopeTxt=(reg.b/100*total).toFixed(1)+' 节/天';
+  let tip;
+  if(behind.length){ tip='优先补：'+behind.map(b=>`${b.name}·${b.ch}（还差${b.left}节）`).join('、')+'。排进下周，别堆到 9 月。'; }
+  else { tip='本周无掉队章节 👍 保持约 '+slopeTxt+' 的节奏，9/30 前能结课。'; }
+  box.innerHTML=`<div class="wk-report">
+    <div class="wk-h">📅 本周复盘（${start} – ${end}）</div>
+    <ul>
+      <li>✅ 打卡 <b>${dates.length}</b> 天 · 上课 <b>${courseDays}</b> 天</li>
+      <li>📚 本周新学 <b>${weekLessons}</b> 节 · 累计总进度 <b>${pct}%</b>（${cum}/${total}）</li>
+      <li>🌅 作息平均完成率 <b>${routineAvg}%</b></li>
+      <li>🔥 上课连续 <b>${streak}</b> 天</li>
+    </ul>
+    <div class="wk-tip">💡 下周建议：${tip}</div>
+  </div>`;
+}
+
+/* ====== 真题 / 练习 成绩追踪 ====== */
+function allExamsSorted(){
+  const out=[];
+  for(const d of Object.keys(all).sort()){
+    const arr=all[d]&&all[d].exams; if(!arr) continue;
+    arr.forEach((e,i)=>out.push(Object.assign({date:d,seq:i},e)));
+  }
+  out.sort((a,b)=> a.date<b.date?-1:(a.date>b.date?1:a.seq-b.seq));
+  return out;
+}
+function examAggBy(type){
+  const recs=allExamsSorted().filter(e=>e.type===type);
+  if(!recs.length) return {n:0,max:0,avg:0,first:0,last:0};
+  let sum=0,max=0; recs.forEach(e=>{ const r=e.full>0?e.score/e.full*100:0; sum+=r; if(r>max)max=r; });
+  const rate=e=>e.full>0?e.score/e.full*100:0;
+  return {n:recs.length, max:Math.round(max), avg:Math.round(sum/recs.length), first:Math.round(rate(recs[0])), last:Math.round(rate(recs[recs.length-1]))};
+}
+function renderExams(){
+  const day=getDay(cur);
+  const list=day.exams||[];
+  const box=document.getElementById('examList'); box.innerHTML='';
+  if(list.length===0){ box.innerHTML='<div style="font-size:12px;color:var(--sub);padding:4px 0;">今天还没记录，做完一套填一下吧～</div>'; }
+  list.slice().reverse().forEach((e,ri)=>{
+    const realIdx=list.length-1-ri;
+    const rate=e.full>0?Math.round(e.score/e.full*100):0;
+    const rateCls=rate>=80?'g':(rate>=60?'w':'b');
+    const row=document.createElement('div'); row.className='exam-row';
+    row.innerHTML=`<span class="bt ${e.type==='真题'?'z':'l'}">${e.type}</span>`
+      +`<b>${e.subj}</b> <span class="src">· ${e.src||'—'}</span>`
+      +`<span class="sc ${rateCls}">${e.score}/${e.full}</span> <span class="src">（${rate}%）</span>`
+      +`<span class="src">· 错 ${e.wrong}</span>`
+      +`<button class="del" data-exam="${realIdx}" title="删除">✕</button>`;
+    box.appendChild(row);
+  });
+  const z=examAggBy('真题'), l=examAggBy('练习');
+  document.getElementById('examChips').innerHTML=
+    `<span class="chip">📕 真题：最高 <b>${z.max}%</b> · 平均 <b>${z.avg}%</b> · ${z.n} 次</span>`
+    +`<span class="chip">📘 练习：最高 <b>${l.max}%</b> · 平均 <b>${l.avg}%</b> · ${l.n} 次</span>`;
+  const zhentiRecs=allExamsSorted().filter(e=>e.type==='真题');
+  document.getElementById('scoreTrend').innerHTML=scoreTrendSVG(zhentiRecs);
+  document.getElementById('examMsg').innerHTML=examEncouragement(zhentiRecs);
+}
+function addExam(){
+  const type=document.getElementById('examType').value;
+  const subj=document.getElementById('examSubj').value;
+  const src=(document.getElementById('examSrc').value||'').trim();
+  const score=parseInt(document.getElementById('examScore').value)||0;
+  const full=parseInt(document.getElementById('examFull').value)||0;
+  const wrong=parseInt(document.getElementById('examWrong').value)||0;
+  if(!src){ toast('请填写来源'); return; }
+  if(full<=0){ toast('满分需大于 0'); return; }
+  if(score>full){ toast('得分不能超过满分'); return; }
+  const day=getDay(cur);
+  if(!day.exams) day.exams=[];
+  day.exams.push({type,subj,src,score,full,wrong});
+  saveAll(all);
+  document.getElementById('examScore').value='';
+  document.getElementById('examSrc').value='';
+  render(); toast('已记录 ✓');
+}
+function deleteExam(idx){
+  const day=getDay(cur);
+  if(day.exams&&day.exams[idx]){ day.exams.splice(idx,1); saveAll(all); render(); }
+}
+function scoreTrendSVG(recs){
+  const W=680,H=170,pl=38,pr=14,pt=14,pb=30;
+  const pw=W-pl-pr, ph=H-pt-pb;
+  const z=recs.filter(e=>e.type==='真题').map(e=>({x:e, rate:e.full>0?e.score/e.full*100:0}));
+  if(z.length===0) return '<div style="color:var(--sub);font-size:12px;padding:8px 0;">暂无真题成绩记录。做完一套真题后填一下，这里会画出得分率提升曲线 📈</div>';
+  const n=z.length;
+  const X=i=>pl+pw*(i/(n-1||1));
+  const Y=r=>pt+ph*(1-r/100);
+  let g='';
+  [0,25,50,75,100].forEach(v=>{ g+=`<line x1="${pl}" y1="${Y(v).toFixed(1)}" x2="${W-pr}" y2="${Y(v).toFixed(1)}" stroke="#283050" stroke-width="1"/><text x="${pl-6}" y="${(Y(v)+4).toFixed(1)}" fill="#8894b8" font-size="9" text-anchor="end">${v}</text>`; });
+  g+=`<line x1="${pl}" y1="${Y(60).toFixed(1)}" x2="${W-pr}" y2="${Y(60).toFixed(1)}" stroke="#f06070" stroke-width="1" stroke-dasharray="4 3"/><text x="${W-pr}" y="${(Y(60)-4).toFixed(1)}" fill="#f06070" font-size="9" text-anchor="end">及格 60%</text>`;
+  let p='', pts='';
+  z.forEach((o,idx)=>{ const x=X(idx).toFixed(1), y=Y(o.rate).toFixed(1); p+=(idx?' L':'M')+x+' '+y; pts+=`<circle cx="${x}" cy="${y}" r="3" fill="#ff8c52"/>`; });
+  const reg=linregXY(z.map((o,i)=>({x:i,y:o.rate})));
+  let trend='';
+  if(reg){
+    const y0=reg.intercept, y1=reg.slope*(n-1)+reg.intercept;
+    trend=`<line x1="${X(0).toFixed(1)}" y1="${Y(y0).toFixed(1)}" x2="${X(n-1).toFixed(1)}" y2="${Y(y1).toFixed(1)}" stroke="#ff8c52" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>`;
+  }
+  let xl=`<text x="${X(0).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${z[0].x.date.slice(5)}</text>`;
+  if(n>1) xl+=`<text x="${X(n-1).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${z[n-1].x.date.slice(5)}</text>`;
+  const first=Math.round(z[0].rate), last=Math.round(z[n-1].rate);
+  const diff=last-first;
+  const perExam=reg?Math.round(reg.slope*100)/100:null;
+  const imp = diff>=0
+    ? `📈 真题得分率：首次 <b>${first}%</b> → 最近 <b>${last}%</b>（${diff>0?'↑ +'+diff:'持平'} 分）${perExam!==null?' · 平均每套提升 '+perExam+'%':''}`
+    : `📉 真题得分率：首次 <b>${first}%</b> → 最近 <b>${last}%</b>（↓ ${Math.abs(diff)} 分）${perExam!==null?' · 平均每套下滑 '+Math.abs(perExam)+'%':''}`;
+  const legend=`<div style="font-size:11px;color:var(--sub);display:flex;gap:14px;margin-top:4px;"><span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:3px;background:#ff8c52;display:inline-block;border-radius:2px;"></span>真题</span><span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:3px;background:#ff8c52;display:inline-block;border-radius:2px;opacity:0.5;border-top:1px dashed;"></span>趋势</span></div>`;
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${g}${trend}<path d="${p}" fill="none" stroke="#ff8c52" stroke-width="2"/>${pts}${xl}</svg>`;
+  return `<div style="font-size:11px;color:var(--sub);margin-bottom:4px;">真题得分率趋势（红虚线 = 及格 60%，虚线为趋势线）</div>`+svg+legend+`<div style="font-size:12.5px;color:${diff>=0?'var(--good)':'var(--bad)'};margin-top:8px;">${imp}</div>`;
+}
+
+/* 随正确率变的话术 */
+function examEncouragement(recs){
+  if(!recs.length) return '<div style="font-size:12px;color:var(--sub);margin-top:8px;">还没有成绩记录，做完第一套，这里会冒出专属鼓励 / 夸夸话术 💬</div>';
+  const rate=e=>e.full>0?e.score/e.full*100:0;
+  const last=rate(recs[recs.length-1]), first=rate(recs[0]);
+  const diff=Math.round(last-first);
+  let main;
+  if(last<40) main='刚开始都这样，别慌。把错题翻出来一题一题啃，你已经在路上了 💪';
+  else if(last<60) main='离及格线就差一口气了！把卡壳那几章补上，下周准过 60% 🔥';
+  else if(last<75) main='过线了！底子稳住了，现在冲高分，把错题清零就更强 💪';
+  else if(last<90) main='哇塞，这正确率太顶了！你离拿证就差临门一脚，继续保持！🚀';
+  else main='太猛了吧！这水平稳了，10 月考场你就是别人家的考生，一定过！🏆';
+  let trend;
+  if(diff>=10) trend='看到没！从 '+Math.round(first)+'% 飙到 '+Math.round(last)+'%，这曲线就是你的实力，继续保持！🔥';
+  else if(diff>0) trend='稳稳往上走，每套都比上套强一点，积少成多 💪';
+  else if(diff===0) trend='稳住别松，下一把冲过这个平台期！';
+  else trend='这把有点掉，没事，真题本来有难有易。把错那套重做一遍找回来！';
+  const color = last>=60 ? 'var(--good)' : (last>=40?'var(--warn)':'var(--bad)');
+  return '<div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(92,140,255,.08);border:1px solid var(--line);color:var(--txt);font-size:12.5px;line-height:1.7;">💬 '+main+'<br><span style="color:'+color+';">📈 '+trend+'</span></div>';
+}
+
+/* ====== 真题打卡（清单 / 月历 / 统计） ====== */
+/* 已做题目集合：跨所有日期汇总，去重 */
+function zhentiDoneSet(year, subj){
+  const s=new Set();
+  for(const d of Object.keys(all)){
+    const arr=all[d]&&all[d].zhenti; if(!arr) continue;
+    arr.forEach(x=>{ if(x.year===year&&x.subj===subj) s.add(x.q); });
+  }
+  return s;
+}
+function hasZhentiData(date){
+  const day=all[date]; if(!day||!day.zhenti) return false;
+  return day.zhenti.length>0;
+}
+function todayZhentiCount(){
+  const day=all[cur]; if(!day||!day.zhenti) return {jiliang:0,anli:0,total:0};
+  let j=0,a=0; day.zhenti.forEach(x=>{ if(x.subj==='计量')j++; else a++; });
+  return {jiliang:j,anli:a,total:day.zhenti.length};
+}
+function zhentiTotalDone(){
+  let n=0;
+  for(const y of ZHENTI_YEARS) n+=zhentiDoneSet(y,'计量').size+zhentiDoneSet(y,'案例').size;
+  return n;
+}
+function zhentiStreak(){
+  let t=new Date(todayStr()+'T00:00:00');
+  if(!hasZhentiData(fmt(t))) t.setDate(t.getDate()-1);
+  let s=0; for(let i=0;i<400;i++){ const ds=fmt(t); if(!hasZhentiData(ds)) break; s++; t.setDate(t.getDate()-1); }
+  return s;
+}
+function getLianxi(date,subj){
+  const day=all[date]; if(!day||!day.lianxi) return {total:0,right:0};
+  const s=day.lianxi[subj]; return s?{total:s.total||0,right:s.right||0}:{total:0,right:0};
+}
+function todayLianxiCount(){
+  const day=all[cur]; if(!day||!day.lianxi) return {计量:{total:0,right:0},案例:{total:0,right:0}};
+  return {
+    计量:{total:day.lianxi.计量.total||0, right:day.lianxi.计量.right||0},
+    案例:{total:day.lianxi.案例.total||0, right:day.lianxi.案例.right||0}
+  };
+}
+function lianxiTotalAll(){
+  const r={计量:{total:0,right:0},案例:{total:0,right:0}};
+  for(const d of Object.keys(all)){
+    const lx=all[d].lianxi; if(!lx) continue;
+    r.计量.total+=lx.计量.total||0; r.计量.right+=lx.计量.right||0;
+    r.案例.total+=lx.案例.total||0; r.案例.right+=lx.案例.right||0;
+  }
+  return r;
+}
+function practiceSeries(){
+  const dates=Object.keys(all).filter(d=>{
+    const lx=all[d].lianxi; if(!lx) return false;
+    return (lx.计量.total>0)||(lx.案例.total>0);
+  }).sort();
+  return dates.map(d=>{
+    const j=getLianxi(d,'计量'), a=getLianxi(d,'案例');
+    return {date:d, 计量:j.total>0?j.right/j.total*100:null, 案例:a.total>0?a.right/a.total*100:null};
+  });
+}
+
+function toggleZhenti(year, subj, q){
+  const done=zhentiDoneSet(year,subj).has(q);
+  if(done){
+    for(const d of Object.keys(all)){ if(all[d]&&all[d].zhenti) all[d].zhenti=all[d].zhenti.filter(x=>!(x.year===year&&x.subj===subj&&x.q===q)); }
+  }else{
+    const day=getDay(cur); if(!day.zhenti) day.zhenti=[]; day.zhenti.push({year,subj,q});
+  }
+  saveAll(all); render(); toast(done?'已取消':'已打卡 ✓');
+}
+function toggleYearGroup(y, subj){
+  const done=zhentiDoneSet(y,subj);
+  const total=subj==='计量'?80:5;
+  if(done.size>=total){
+    for(const d of Object.keys(all)){ if(all[d]&&all[d].zhenti) all[d].zhenti=all[d].zhenti.filter(x=>!(x.year===y&&x.subj===subj)); }
+    saveAll(all); render(); toast('已清空');
+  }else{
+    const day=getDay(cur); if(!day.zhenti) day.zhenti=[];
+    for(let q=1;q<=total;q++){ if(!done.has(q)) day.zhenti.push({year:y,subj,q}); }
+    saveAll(all); render(); toast('整套已标记 ✓');
+  }
+}
+function changeLianxi(subj,type,delta){
+  const day=getDay(cur);
+  const s=day.lianxi[subj];
+  if(type==='right'){
+    s.right=Math.max(0, Math.min(s.total||0, (s.right||0)+delta));
+  }else{
+    s.total=Math.max(0,(s.total||0)+delta);
+    s.right=Math.min(s.right||0, s.total);
+  }
+  saveAll(all); render(); toast('已更新');
+}
+
+let zExpanded=new Set();
+function renderZhentiStats(){
+  const t=todayZhentiCount();
+  const lx=todayLianxiCount();
+  document.getElementById('zTodayTotal').textContent=t.total;
+  document.getElementById('zTodayJ').textContent=t.jiliang;
+  document.getElementById('zTodayA').textContent=t.anli;
+  document.getElementById('zTodayLJ').textContent=lx.计量.total;
+  document.getElementById('zTodayLA').textContent=lx.案例.total;
+  document.getElementById('zStreak').textContent=zhentiStreak();
+  const done=zhentiTotalDone();
+  const total=ZHENTI_YEARS.length*ZHENTI_PER_YEAR;
+  const pct=Math.round(done/total*100);
+  const days=Object.keys(all).filter(d=>hasZhentiData(d)).length;
+  const bars=document.getElementById('zRateBars');
+  bars.innerHTML=`
+    <div class="bar-row"><div class="name">真题总进度</div><div class="bar"><i style="width:${pct}%;background:var(--orange);"></i></div><div class="pct">${pct}%</div></div>
+    <div class="bar-row"><div class="name">真题累计天</div><div class="bar"><i style="width:${Math.min(100,days)}%;"></i></div><div class="pct">${days}天</div></div>
+    <div class="bar-row"><div class="name">真题已做</div><div class="bar"><i style="width:${Math.min(100,done)}%;background:var(--orange);"></i></div><div class="pct">${done}/${total}</div></div>`;
+}
+function renderZhentiYears(){
+  const box=document.getElementById('zYears'); if(!box) return; box.innerHTML='';
+  ZHENTI_YEARS.forEach((y,idx)=>{
+    const jd=zhentiDoneSet(y,'计量'), ad=zhentiDoneSet(y,'案例');
+    const open=zExpanded.has(y);
+    const sec=document.createElement('div'); sec.className='year-sec';
+    sec.innerHTML=`
+      <div class="year-head${open?' open':''}" data-year="${y}">
+        <span class="ychev">▸</span>
+        <span class="yname">${y}</span>
+        <span class="ymeta">计量 <b>${jd.size}</b>/80 · 案例 <b>${ad.size}</b>/5</span>
+      </div>
+      <div class="year-body" id="zy-${idx}" style="display:${open?'block':'none'};"></div>`;
+    box.appendChild(sec);
+    if(open) renderYearBody(y, sec.querySelector('#zy-'+idx));
+  });
+}
+function zqCell(y,subj,q,done){
+  const c=document.createElement('div');
+  c.className='lesson'+(done?' done':'');
+  c.textContent=q;
+  c.title=`${y} ${subj} 第${q}题${done?' (已做)':''}`;
+  c.dataset.zq='1'; c.dataset.year=y; c.dataset.subj=subj; c.dataset.q=q;
+  return c;
+}
+function renderYearBody(y, container){
+  if(!container) return;
+  const jd=zhentiDoneSet(y,'计量'), ad=zhentiDoneSet(y,'案例');
+  let html='';
+  html+=`<div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 2px;">
+      <b style="font-size:13px;color:var(--txt);">计量</b>
+      <span style="font-size:11px;color:var(--sub);">${jd.size}/80 已做 · <button class="btn" data-zall="${y}|计量" style="padding:3px 8px;font-size:11px;">整套标记/清空</button></span>
+    </div>`;
+  html+=`<div class="zq-sub">单选题 1–60</div><div class="lessons" id="zq-j-${y}"></div>`;
+  html+=`<div class="zq-sub">多选题 61–80</div><div class="lessons" id="zq-j2-${y}"></div>`;
+  html+=`<div style="display:flex;justify-content:space-between;align-items:center;margin:12px 0 2px;">
+      <b style="font-size:13px;color:var(--txt);">案例</b>
+      <span style="font-size:11px;color:var(--sub);">${ad.size}/5 已做 · <button class="btn" data-zall="${y}|案例" style="padding:3px 8px;font-size:11px;">整套标记/清空</button></span>
+    </div>`;
+  html+=`<div class="lessons" id="zq-a-${y}"></div>`;
+  container.innerHTML=html;
+  const g1=container.querySelector('#zq-j-'+y);
+  for(let q=1;q<=60;q++) g1.appendChild(zqCell(y,'计量',q,jd.has(q)));
+  const g2=container.querySelector('#zq-j2-'+y);
+  for(let q=61;q<=80;q++) g2.appendChild(zqCell(y,'计量',q,jd.has(q)));
+  const g3=container.querySelector('#zq-a-'+y);
+  for(let q=1;q<=5;q++) g3.appendChild(zqCell(y,'案例',q,ad.has(q)));
+}
+function renderLianxi(){
+  const box=document.getElementById('lianxiBox'); if(!box) return;
+  const t=todayLianxiCount();
+  const tot=lianxiTotalAll();
+  const rate=(o)=>o.total>0?Math.round(o.right/o.total*100)+'%':'—';
+  const row=(subj,cls)=>`
+    <div class="lianxi-row">
+      <b>${subj}</b>
+      <span>做题</span>
+      <button class="btn" data-lianxi-subj="${subj}" data-lianxi-type="total" data-lianxi-delta="-1">－</button>
+      <span style="min-width:22px;text-align:center;color:var(--txt);">${t[subj].total}</span>
+      <button class="btn" data-lianxi-subj="${subj}" data-lianxi-type="total" data-lianxi-delta="1">＋</button>
+      <span style="margin-left:6px;">对题</span>
+      <button class="btn" data-lianxi-subj="${subj}" data-lianxi-type="right" data-lianxi-delta="-1">－</button>
+      <span style="min-width:22px;text-align:center;color:var(--txt);">${t[subj].right}</span>
+      <button class="btn" data-lianxi-subj="${subj}" data-lianxi-type="right" data-lianxi-delta="1">＋</button>
+      <span class="lianxi-rate">正确率 ${rate(t[subj])}</span>
+      <span class="lianxi-tot">累计 ${tot[subj].total} 题/对 ${tot[subj].right} 题 · ${rate(tot[subj])}</span>
+    </div>`;
+  box.innerHTML=row('计量')+row('案例');
+  const tr=document.getElementById('lianxiTrend'); if(tr) tr.innerHTML=practiceTrendSVG();
+}
+
+function linregXY(points){
+  const n=points.length; if(n<2) return null;
+  let sx=0,sy=0,sxx=0,sxy=0;
+  points.forEach(p=>{sx+=p.x; sy+=p.y; sxx+=p.x*p.x; sxy+=p.x*p.y;});
+  const d=n*sxx-sx*sx; if(Math.abs(d)<1e-9) return null;
+  return {slope:(n*sxy-sx*sy)/d, intercept:(sy-(n*sxy-sx*sy)/d*sx)/n};
+}
+function practiceTrendSVG(){
+  const W=680,H=170,pl=38,pr=14,pt=14,pb=30;
+  const pw=W-pl-pr, ph=H-pt-pb;
+  const series=practiceSeries();
+  if(series.length===0) return '<div style="color:var(--sub);font-size:12px;padding:8px 0;">暂无练习记录。在上面记「做了几道、对了几道」，这里会画出正确率趋势 📈</div>';
+  const n=series.length;
+  const X=i=>pl+pw*(i/(n-1||1));
+  const Y=r=>pt+ph*(1-r/100);
+  const rate=(o)=>o===null?null:Math.round(o);
+  function pointsFor(subj){
+    const pts=[]; series.forEach((s,i)=>{ const r=s[subj]; if(r!==null) pts.push({x:i,y:r,date:s.date}); }); return pts;
+  }
+  function pathFor(pts,color){
+    if(pts.length<2) return pts.map(p=>`<circle cx="${X(p.x).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="3" fill="${color}"/>`).join('');
+    let p='M'; let circles='';
+    pts.forEach((o,idx)=>{ const x=X(o.x).toFixed(1), y=Y(o.y).toFixed(1); p+=(idx?' L':'')+x+' '+y; circles+=`<circle cx="${x}" cy="${y}" r="3" fill="${color}"/>`; });
+    return `<path d="${p}" fill="none" stroke="${color}" stroke-width="2"/>${circles}`;
+  }
+  function trendLine(pts,color){
+    const reg=linregXY(pts); if(!reg) return '';
+    const y0=reg.intercept, y1=reg.slope*(n-1)+reg.intercept;
+    return `<line x1="${X(0).toFixed(1)}" y1="${Y(y0).toFixed(1)}" x2="${X(n-1).toFixed(1)}" y2="${Y(y1).toFixed(1)}" stroke="${color}" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>`;
+  }
+  let g='';
+  [0,25,50,75,100].forEach(v=>{ g+=`<line x1="${pl}" y1="${Y(v).toFixed(1)}" x2="${W-pr}" y2="${Y(v).toFixed(1)}" stroke="#283050" stroke-width="1"/><text x="${pl-6}" y="${(Y(v)+4).toFixed(1)}" fill="#8894b8" font-size="9" text-anchor="end">${v}</text>`; });
+  g+=`<line x1="${pl}" y1="${Y(60).toFixed(1)}" x2="${W-pr}" y2="${Y(60).toFixed(1)}" stroke="#f06070" stroke-width="1" stroke-dasharray="4 3"/><text x="${W-pr}" y="${(Y(60)-4).toFixed(1)}" fill="#f06070" font-size="9" text-anchor="end">及格 60%</text>`;
+  const jPts=pointsFor('计量'), aPts=pointsFor('案例');
+  g+=trendLine(jPts,'#ff8c52')+trendLine(aPts,'#5c8cff');
+  g+=pathFor(jPts,'#ff8c52')+pathFor(aPts,'#5c8cff');
+  let xl=`<text x="${X(0).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${series[0].date.slice(5)}</text>`;
+  if(n>1) xl+=`<text x="${X(n-1).toFixed(1)}" y="${H-10}" fill="#8894b8" font-size="9" text-anchor="middle">${series[n-1].date.slice(5)}</text>`;
+  const lastJ=rate(series[n-1].计量), lastA=rate(series[n-1].案例);
+  const firstJ=rate(series[0].计量), firstA=rate(series[0].案例);
+  const diffJ=lastJ===null?null:lastJ-(firstJ||0), diffA=lastA===null?null:lastA-(firstA||0);
+  let txt='';
+  if(lastJ!==null) txt+=`计量：${firstJ||'—'}% → ${lastJ}% ${diffJ>0?'↑':(diffJ<0?'↓':'→')} ${diffJ!==null?Math.abs(diffJ):'—'} · `;
+  if(lastA!==null) txt+=`案例：${firstA||'—'}% → ${lastA}% ${diffA>0?'↑':(diffA<0?'↓':'→')} ${diffA!==null?Math.abs(diffA):'—'}`;
+  const legend=`<div style="font-size:11px;color:var(--sub);display:flex;gap:14px;margin-top:4px;"><span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:3px;background:#ff8c52;display:inline-block;border-radius:2px;"></span>计量</span><span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:3px;background:#5c8cff;display:inline-block;border-radius:2px;"></span>案例</span></div>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${g}${xl}</svg>${legend}<div style="font-size:12px;color:var(--txt);margin-top:8px;">${txt}</div>`;
+}
+
+/* 真题月历（独立状态） */
+let zCalYear, zCalMonth;
+function renderZhentiHistory(){
+  const box=document.getElementById('zHistory'); if(!box) return; box.innerHTML='';
+  const t=new Date(todayStr()+'T00:00:00');
+  const today=fmt(t);
+  if(zCalYear===undefined){ const d=new Date(cur+'T00:00:00'); zCalYear=d.getFullYear(); zCalMonth=d.getMonth(); }
+  const nav=document.createElement('div');
+  nav.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;';
+  const months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  nav.innerHTML=`
+    <button class="btn" id="zCalPrev" style="padding:4px 10px;">‹</button>
+    <span style="font-size:14px;color:var(--txt);font-weight:600;">${zCalYear}年 ${months[zCalMonth]}</span>
+    <button class="btn" id="zCalNext" style="padding:4px 10px;">›</button>`;
+  box.appendChild(nav);
+  const wh=document.createElement('div');
+  wh.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;';
+  ['日','一','二','三','四','五','六'].forEach(w=>{ const wd=document.createElement('div'); wd.style.cssText='text-align:center;font-size:10px;color:var(--sub);padding:2px 0;'; wd.textContent=w; wh.appendChild(wd); });
+  box.appendChild(wh);
+  const grid=document.createElement('div');
+  grid.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:3px;';
+  const firstDay=new Date(zCalYear,zCalMonth,1);
+  const startDow=firstDay.getDay();
+  const daysInMonth=new Date(zCalYear,zCalMonth+1,0).getDate();
+  for(let i=0;i<startDow;i++) grid.appendChild(document.createElement('div'));
+  for(let day=1;day<=daysInMonth;day++){
+    const d=new Date(zCalYear,zCalMonth,day);
+    const ds=fmt(d);
+    const cell=document.createElement('div');
+    let cls='hcell';
+    if(hasZhentiData(ds)) cls+=' zq';
+    else if(hasCourseData(ds)||hasRoutineData(ds)) cls+=' part';
+    if(ds===cur) cls+=' sel';
+    if(ds===today) cls+=' today-mark';
+    cell.className=cls; cell.textContent=day; cell.title=prettyDate(ds);
+    cell.style.cssText='width:auto;height:30px;';
+    cell.onclick=()=>{cur=ds; zCalYear=d.getFullYear(); zCalMonth=d.getMonth(); render();};
+    grid.appendChild(cell);
+  }
+  box.appendChild(grid);
+  const leg=document.createElement('div');
+  leg.className='legend'; leg.style.marginTop='10px';
+  leg.innerHTML=`<span><span class="box" style="background:rgba(92,140,255,.2);border:1px solid var(--accent);"></span> 真题打卡</span><span><span class="box b"></span> 无记录</span>`;
+  box.appendChild(leg);
+  document.getElementById('zCalPrev').onclick=()=>{ if(zCalMonth===0){zCalMonth=11;zCalYear--;}else{zCalMonth--;} renderZhentiHistory(); };
+  document.getElementById('zCalNext').onclick=()=>{ if(zCalMonth===11){zCalMonth=0;zCalYear++;}else{zCalMonth++;} renderZhentiHistory(); };
+}
+
 /* ====== 交互 ====== */
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1400); }
 
 document.body.addEventListener('click',e=>{
+  // 成绩记录删除
+  const dt=e.target.closest('[data-exam]');
+  if(dt){ deleteExam(parseInt(dt.dataset.exam)); return; }
   // 作息打卡
   const rt=e.target.closest('[data-routine]');
   if(rt){
     const id=rt.dataset.routine;
     const day=getDay(cur);
     day.slots[id]=!day.slots[id];
-    saveAll(all); render(); toast(day.slots[id]?'已打卡 ✓':'已取消');
+    saveAll(all);
+    if(rt.dataset.examsubj){ const es=rt.dataset.examsubj; document.getElementById('examSubj').value=es; document.getElementById('examFull').value=es==='案例'?120:100; }
+    render(); toast(day.slots[id]?'已打卡 ✓':'已取消');
     return;
   }
   // 课程打卡
@@ -618,6 +1540,23 @@ document.body.addEventListener('click',e=>{
     }
     saveAll(all); render(); toast(isAdding?'已打卡 ✓':'已取消');
   }
+  // 历年真题：年份展开/收起
+  const yh=e.target.closest('.year-head');
+  if(yh){
+    const y=yh.dataset.year;
+    if(zExpanded.has(y)) zExpanded.delete(y); else zExpanded.add(y);
+    renderZhentiYears();
+    return;
+  }
+  // 历年真题：整套标记/清空
+  const za=e.target.closest('[data-zall]');
+  if(za){ const p=za.dataset.zall.split('|'); toggleYearGroup(p[0],p[1]); return; }
+  // 历年真题：单题勾选
+  const zq=e.target.closest('[data-zq]');
+  if(zq){ toggleZhenti(zq.dataset.year, zq.dataset.subj, parseInt(zq.dataset.q)); return; }
+  // 练习题按科目计数
+  const lx=e.target.closest('[data-lianxi-subj]');
+  if(lx){ changeLianxi(lx.dataset.lianxiSubj, lx.dataset.lianxiType, parseInt(lx.dataset.lianxiDelta)); return; }
 });
 
 document.getElementById('note').addEventListener('input',e=>{ getDay(cur).note=e.target.value; saveAll(all); });
@@ -635,8 +1574,30 @@ document.getElementById('importFile').onchange=e=>{
   r.onload=()=>{ try{ const d=JSON.parse(r.result); if(typeof d==='object'){ all=Object.assign(loadAll(),d); saveAll(all); render(); toast('导入成功 ✓'); } }catch(err){ alert('文件格式不正确'); } };
   r.readAsText(f);
 };
+document.getElementById('trendWeek').onclick=()=>{trendMode='week';document.getElementById('trendWeek').classList.add('active');document.getElementById('trendMonth').classList.remove('active');document.getElementById('barUnit').textContent='按周';renderTrend();};
+document.getElementById('trendMonth').onclick=()=>{trendMode='month';document.getElementById('trendMonth').classList.add('active');document.getElementById('trendWeek').classList.remove('active');document.getElementById('barUnit').textContent='按月';renderTrend();};
+
+/* 顶部模块切换：上课打卡 / 真题冲刺（常驻，手动切） */
+document.getElementById('tabCourseBtn').onclick=()=>{
+  document.getElementById('tabCourse').style.display='';
+  document.getElementById('tabSprint').style.display='none';
+  document.getElementById('tabCourseBtn').classList.add('active');
+  document.getElementById('tabSprintBtn').classList.remove('active');
+};
+document.getElementById('tabSprintBtn').onclick=()=>{
+  document.getElementById('tabCourse').style.display='none';
+  document.getElementById('tabSprint').style.display='';
+  document.getElementById('tabSprintBtn').classList.add('active');
+  document.getElementById('tabCourseBtn').classList.remove('active');
+};
+
+document.getElementById('examAdd').onclick=addExam;
+document.getElementById('examSubj').onchange=e=>{ document.getElementById('examFull').value = e.target.value==='案例'?120:100; };
+document.getElementById('examScore').addEventListener('keydown',e=>{ if(e.key==='Enter') addExam(); });
 
 render();
+renderCountdown();
+setInterval(renderCountdown,1000);
 </script>
 </body>
 </html>
