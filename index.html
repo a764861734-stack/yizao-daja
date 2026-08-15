@@ -274,7 +274,7 @@ textarea:focus{outline:none;border-color:var(--accent)}
     <div class="tab active" id="trendWeek">按周</div>
     <div class="tab" id="trendMonth">按月</div>
   </div>
-  <div style="font-size:11px;color:var(--sub);margin-bottom:4px;">累计完成率（实线=已学 · 虚线=按当前节奏预测 · 红线=考试日 10/18 · 蓝线=课程截止 9/30 · <b style="color:#ffd76a;">黄点=实际完成日期</b> · 蓝点=今天）</div>
+  <div style="font-size:11px;color:var(--sub);margin-bottom:4px;">累计完成率（实线=已学 · 虚线=按当前节奏预测 · 红线=考试日 10/18 · 蓝线=课程截止 9/30 · <b style="color:#3fae5a;">🟢绿线=预计全完成日</b> · <b style="color:#ffd76a;">黄点=实际完成日期</b> · 蓝点=今天）</div>
   <div id="trendLine"></div>
   <div id="trendProj" style="font-size:12px;color:var(--warn);margin:6px 0 2px;"></div>
   <div style="font-size:11px;color:var(--sub);margin:10px 0 4px;">新学节数（你的实际打卡，<span id="barUnit">按周</span>）</div>
@@ -675,7 +675,7 @@ function trendLineSVG(actual, forecast, info){
   const W=680,H=186,pl=38,pr=14,pt=14,pb=44;
   const pw=W-pl-pr, ph=H-pt-pb;
   if(actual.length===0) return '<div style="color:#8894b8;font-size:12px;padding:8px 0;">暂无数据</div>';
-  const maxX=Math.max(actual.length-1, info.examIdx||0);
+  const maxX=Math.max(actual.length-1, info.examIdx||0, info.fullIdx||0);
   const X=i=> pl+pw*(i/maxX);
   const Y=p=> pt+ph*(1-p/100);
   let g='';
@@ -702,10 +702,12 @@ function trendLineSVG(actual, forecast, info){
   if(info.courseIdx!=null && info.courseIdx<=maxX){ const cx2=X(info.courseIdx).toFixed(1); cv=`<line x1="${cx2}" y1="${pt}" x2="${cx2}" y2="${pt+ph}" stroke="#5c8cff" stroke-width="1" stroke-dasharray="3 3"/><text x="${cx2}" y="${pt-3}" fill="#5c8cff" font-size="9" text-anchor="middle">${info.courseLabel}</text>`; }
   let ev='';
   if(info.examIdx!=null && info.examIdx<=maxX){ const ex=X(info.examIdx).toFixed(1); ev=`<line x1="${ex}" y1="${pt}" x2="${ex}" y2="${pt+ph}" stroke="#f06070" stroke-width="1" stroke-dasharray="3 3"/><text x="${ex}" y="${pt-3}" fill="#f06070" font-size="9" text-anchor="middle">${info.examLabel}</text>`; }
+  let fv='';
+  if(info.fullIdx!=null && info.fullIdx<=maxX){ const fx=X(info.fullIdx).toFixed(1); fv=`<line x1="${fx}" y1="${pt}" x2="${fx}" y2="${pt+ph}" stroke="#3fae5a" stroke-width="1.3" stroke-dasharray="4 3"/><text x="${fx}" y="${pt-3}" fill="#3fae5a" font-size="9" text-anchor="middle">🎯${info.fullLabel||''}</text>`; }
   let xl='', lastM=-1;
   actual.forEach((o,i)=>{ const mm=new Date(o.date+'T00:00:00').getMonth(); if(mm!==lastM){ lastM=mm; xl+=`<text x="${X(i).toFixed(1)}" y="${H-26}" fill="#8894b8" font-size="9" text-anchor="middle">${mm+1}月</text>`; } });
   const dash=fp?`<path d="${fp}" fill="none" stroke="#ff8c52" stroke-width="2" stroke-dasharray="5 4" opacity=".85"/>`:'';
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${g}<path d="${ap}" fill="none" stroke="#ff8c52" stroke-width="2"/>${dash}${dots}${cv}${ev}${xl}${dlabels}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block;">${g}<path d="${ap}" fill="none" stroke="#ff8c52" stroke-width="2"/>${dash}${dots}${cv}${ev}${fv}${xl}${dlabels}</svg>`;
 }
 
 function barSVG(b){
@@ -738,8 +740,18 @@ function renderTrend(){
   const todayIdx=actual.length?actual.length-1:0;
   const reg=linreg(actual.map((o,i)=>({x:i,y:o.cum/total*100})));
   let forecast=[]; let projHtml='数据不足，暂无法预测（至少需 2 天记录）';
+  let fullDate=null, fullIdx=null;
   if(reg && examIdx>todayIdx){
-    for(let x=todayIdx;x<=examIdx;x++){ forecast.push({x, y:Math.max(0,Math.min(100,reg.a+reg.b*x))}); }
+    // 预计全完成（累计=100%）的日期：由回归线 y=100 反推 x
+    if(reg.b>0){
+      const xf=(100-reg.a)/reg.b;
+      if(isFinite(xf) && xf>todayIdx){
+        const fd=new Date(startD); fd.setDate(fd.getDate()+Math.round(xf)); fullDate=fmt(fd);
+        if(xf<=examIdx) fullIdx=Math.ceil(xf);   // 在图表范围内才画绿线
+      }
+    }
+    const xEnd=Math.max(examIdx, fullIdx||examIdx);
+    for(let x=todayIdx;x<=xEnd;x++){ forecast.push({x, y:Math.max(0,Math.min(100,reg.a+reg.b*x))}); }
     const peExam=Math.max(0,Math.min(100,reg.a+reg.b*examIdx));
     const peCourse=Math.max(0,Math.min(100,reg.a+reg.b*courseIdx));
     const doneNow=actual[todayIdx].cum, leftNow=total-doneNow;
@@ -751,13 +763,19 @@ function renderTrend(){
     if(peCourse>=100){ lvl='ok'; bgc='rgba(46,160,67,.16)'; bdc='#3fae5a'; txc='#8ee6a3'; icon='🟢'; headline='课程窗口安全：按当前节奏到 9/30 可学完全部，10月真题冲刺无忧'; }
     else if(needPerDay>slopeNow*1.15){ lvl='behind'; bgc='rgba(240,80,80,.16)'; bdc='#f06070'; txc='#ff9a9a'; icon='🔴'; headline='⚠ 落后预警：按当前节奏到 9/30 还差 '+leftCourse+' 节，需立即提速'; }
     else { lvl='tight'; bgc='rgba(255,179,0,.16)'; bdc='#ffb300'; txc='#ffd76a'; icon='🟡'; headline='偏紧提醒：按当前节奏到 9/30 差 '+leftCourse+' 节，小幅提速即可赶上'; }
+    const fullLine = fullDate
+      ? (fullIdx!=null
+          ? `预计 <b>${fullDate.slice(5)}</b> 学完全部课程（达 100% 🎯）`
+          : `按当前节奏到 10/18 仅 <b>${Math.round(peExam)}%</b>，预计 <b>${fullDate.slice(5)}</b> 才能全完成`)
+      : `按当前节奏无法在考试前完成全部课程`;
     projHtml=`<div style="margin-top:8px;padding:10px 12px;border-radius:10px;background:${bgc};border:1px solid ${bdc};color:${txc};font-size:12.5px;line-height:1.65;">`
       +`<b>${icon} ${headline}</b><br>`
       +`到 9/30 预计完成 <b>${Math.round(peCourse)}%</b>（${projDoneCourse}/${total} 节） · 还差 <b>${leftCourse}</b> 节<br>`
-      +`需提到 <b>${needPerDay.toFixed(1)}</b> 节/天（现约 ${slopeNow.toFixed(1)} 节/天） · 到 10/18 预计 ${Math.round(peExam)}%`
+      +`需提到 <b>${needPerDay.toFixed(1)}</b> 节/天（现约 ${slopeNow.toFixed(1)} 节/天） · 到 10/18 预计 ${Math.round(peExam)}%<br>`
+      +`${fullLine}`
       +`</div>`;
   }
-  document.getElementById('trendLine').innerHTML=trendLineSVG(actual,forecast,{total,examIdx,examLabel:'10/18',courseIdx,courseLabel:'9/30',todayIdx});
+  document.getElementById('trendLine').innerHTML=trendLineSVG(actual,forecast,{total,examIdx,examLabel:'10/18',courseIdx,courseLabel:'9/30',todayIdx,fullIdx,fullLabel:fullDate?fullDate.slice(5):null});
   document.getElementById('trendProj').innerHTML=projHtml;
   document.getElementById('trendBar').innerHTML=barSVG(buildTrend(trendMode));
 }
